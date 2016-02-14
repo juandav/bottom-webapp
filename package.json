@@ -1,0 +1,46 @@
+{
+  "name": "instakapp",
+  "version": "0.0.1",
+  "description": "InstakApp",
+  "scripts": {
+    "build:dev": "NODE_ENV=development webpack-dev-server --devtool eval --progress --colors --hot --content-base build-dev --config webpack.config.dev.js",
+    "build:dist": "NODE_ENV=production webpack --config webpack.config.dist.js && jscrambler ./build-dist/bundle.js -a Instak -s Instak123 > ./build-dist/bundle.min.js",
+    "dist": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juandav/InstakApp.git"
+  },
+  "keywords": [
+    "App",
+    "InstakApp"
+  ],
+  "author": "juandav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juandav/InstakApp/issues"
+  },
+  "homepage": "https://github.com/juandav/InstakApp#readme",
+  "dependencies": {
+    "history": "^2.0.0",
+    "jquery": "^2.2.0",
+    "material-ui": "^0.14.4",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.0",
+    "react-tap-event-plugin": "^0.2.2",
+    "reflux": "^0.3.0",
+    "reflux-state-mixin": "^0.6.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "jscrambler": "^0.7.5",
+    "jscrambler-loader": "^1.0.1",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-livereload-plugin": "^0.5.3"
+  }
+}
