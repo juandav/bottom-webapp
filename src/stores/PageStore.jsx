@@ -11,8 +11,25 @@ let PageStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : [ PageActions ],
   url            : 'http://localhost:7000/page',
-  getInitialState: function() {},
-  fetchPage      : function() {},
+  getInitialState: function() {
+    return {
+      page: ''
+    };
+  },
+  fetchPage      : function() {
+    $.ajax({
+      type   : 'GET',
+      url    : this.url,
+      context: this
+    })
+    .done(function(data) {
+      let info = JSON.stringify(data);
+      this.setState({ page: info });
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  },
   createPage     : function() {},
   putPage        : function() {},
   removePage     : function() {}
