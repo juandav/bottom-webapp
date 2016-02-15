@@ -15,7 +15,7 @@ injectTapEventPlugin();
 
 render((
  <Router history = { history } >
-   <Route path='/' component={ Dashboard }>
+   <Route path='/' component={ Account }>
      <IndexRoute component={ Dashboard }/>
      <Route path='login' component={ Account }/>
      <Route path='dashboard' component={ Dashboard }/>
