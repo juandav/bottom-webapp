@@ -11,8 +11,25 @@ let BlogStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : [ BlogActions ],
   url            : 'http://localhost:7000/blog',
-  getInitialState: function() {},
-  fetchBlog      : function() {},
+  getInitialState: function() {
+    return {
+      blog: ''
+    };
+  },
+  fetchBlog      : function() {
+    $.ajax({
+      type   : 'GET',
+      url    : this.url,
+      context: this
+    })
+    .done(function(data) {
+      let info = JSON.stringify(data);
+      this.setState({ blog: info });
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  },
   createBlog     : function() {},
   putBlog        : function() {},
   removeBlog     : function() {}
