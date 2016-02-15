@@ -12,12 +12,6 @@ export default class Menu extends React.Component {
     };
   }
 
-  _handleClose(){
-    this.setState({
-      open: false
-    });
-  }
-
   _handleToggleMenu(){
     this.props.history.push('/menu');
   }
@@ -31,20 +25,14 @@ export default class Menu extends React.Component {
     this.props.history.push('/post');
   }
 
-  componentDidMount(){
+  componentWillUpdate(){
     this.state.open = this.props.click;
-  }
-
-  _hanldeChangeState(){
-    this.setState({
-      open: !this.state.open
-    });
   }
 
   render() {
     return (
       <div>
-        <LeftNav docked={false} open={ this.state.open } openRight={true} onRequestChange={ this._hanldeChangeState.bind(this) }>
+        <LeftNav docked={false} open={ this.state.open } openRight={true} onRequestChange={ open => this.setState({open}) }>
           <MenuItem onTouchTap={this._handleToggleMenu.bind(this)}>Menus</MenuItem>
           <MenuItem onTouchTap={this._handleTogglePage.bind(this)}>Page</MenuItem>
           <MenuItem onTouchTap={this._handleToggleBlog.bind(this)}>Blog</MenuItem>
