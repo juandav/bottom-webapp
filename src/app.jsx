@@ -15,10 +15,14 @@ injectTapEventPlugin();
 
 render((
  <Router history = { history } >
-   <Route path='/' component={ Account }>
-     <IndexRoute component={ Dashboard }/>
+   <Route path='/' component={ Dashboard }>
      <Route path='login' component={ Account }/>
      <Route path='dashboard' component={ Dashboard }/>
    </Route>
  </Router>
 ), document.getElementById('app'))
+
+
+/*
+// <IndexRoute component={ Account }/>
+*/

@@ -23,11 +23,16 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <AppBar
-        title="InstaCash"
-        onLeftIconButtonTouchTap={ this._changeState.bind(this) }>
-        <Menu click={ true } history={ this.props.history }/>
-      </AppBar>
+      <div id="dashboard">
+        <AppBar
+          title="InstaCash"
+          onLeftIconButtonTouchTap={ this._changeState.bind(this) }>
+          <Menu click={ true } history={ this.props.history }/>
+        </AppBar>
+        <div id="content" className="content">
+          { this.props.children }
+        </div>
+      </div>
     )
   }
 }
