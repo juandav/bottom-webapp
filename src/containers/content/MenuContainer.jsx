@@ -45,6 +45,10 @@ export default class MenuContainer extends Component {
     this.setState({ open: false });
   }
 
+  _removeRow(row) {
+    MenuActions.removeMenu(row);
+  }
+
   render() {
     if(this.state.info) {
       const actions = [
@@ -55,7 +59,7 @@ export default class MenuContainer extends Component {
         <div>
           <RaisedButton label="Create Menu" primary={true} onTouchTap={ this.handleOpen.bind(this) }/>
           <Dialog
-            title='Create new mencu'
+            title='Create new menu'
             actions={actions}
             modal={true}
             open={this.state.open}>
@@ -67,6 +71,7 @@ export default class MenuContainer extends Component {
               <TableRow>
                 <TableHeaderColumn>ID</TableHeaderColumn>
                 <TableHeaderColumn>Title</TableHeaderColumn>
+                <TableHeaderColumn>Delete</TableHeaderColumn>
               </TableRow>
             </TableHeader>
 
@@ -75,6 +80,11 @@ export default class MenuContainer extends Component {
                 <TableRow key={index} selected={ false }>
                   <TableRowColumn>{index}</TableRowColumn>
                   <TableRowColumn>{row.title}</TableRowColumn>
+                  <TableRowColumn>
+                    <FloatingActionButton mini={true} onClick={ this._removeRow.bind(this, row) } >
+                      <ContentAdd />
+                    </FloatingActionButton>
+                  </TableRowColumn>
                 </TableRow>
               ))}
             </TableBody>
@@ -88,32 +98,3 @@ export default class MenuContainer extends Component {
     )
   }
 }
-
-
-/*
-JSON.parse(this.state.info).map
-if(this.state.info !== null){
-
-  info = JSON.parse(this.state.info);
-
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
-          <TableHeaderColumn>Title</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-
-      <TableBody>
-        { info.map((row, index) => (
-          <TableRow key={index} selected={ false }>
-            <TableRowColumn>{index}</TableRowColumn>
-            <TableRowColumn>{row.title}</TableRowColumn>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  )
-}
-*/

@@ -20,6 +20,7 @@ injectTapEventPlugin();
 render((
  <Router history = { browserHistory } >
    <Route path='/' component={ Dashboard }>
+     <IndexRoute component={ MenuContainer }/>
      <Route path='login' component={ Account }/>
      <Route path="/menu" component={ MenuContainer } />
      <Route path="/page" component={ PageContainer } />
