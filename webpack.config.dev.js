@@ -18,10 +18,16 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(stardust))/,
         loader: ['babel'],
         query: {
-          presets: ['react', 'es2015']
+          cacheDirectory: true,
+          plugins: [
+            'transform-runtime',
+            'add-module-exports',
+            'transform-decorators-legacy',
+          ],
+          presets: ['react', 'es2015', 'stage-1']
         }
       }
     ]

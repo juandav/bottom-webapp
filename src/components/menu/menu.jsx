@@ -14,15 +14,19 @@ export default class Menu extends React.Component {
 
   _handleToggleMenu(){
     this.props.history.push('/menu');
+    this.setState({ open: false });
   }
   _handleTogglePage(){
     this.props.history.push('/page');
+    this.setState({ open: false });
   }
   _handleToggleBlog(){
     this.props.history.push('/blog');
+    this.setState({ open: false });
   }
   _handleTogglePost(){
     this.props.history.push('/post');
+    this.setState({ open: false });
   }
 
   componentWillUpdate(){
