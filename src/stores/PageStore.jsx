@@ -9,7 +9,7 @@ import PageActions from '../actions/PageActions.jsx';
 
 let PageStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
-  listenables    : [ PageActions ],
+  listenables    : PageActions,
   url            : 'http://localhost:7000/page',
   getInitialState: function() {
     return {
@@ -19,12 +19,12 @@ let PageStore = Reflux.createStore({
   fetchPage      : function() {
     $.ajax({
       type   : 'GET',
-      url    : this.url,
+      url    : 'http://localhost:7000/page',
       context: this
     })
     .done(function(data) {
-      let info = JSON.stringify(data);
-      this.setState({ page: info });
+      let info = JSON.stringify(data.payload);
+      this.setState({ page: info});
     })
     .fail(function(err) {
       console.log('Error loading data: ' + err);
