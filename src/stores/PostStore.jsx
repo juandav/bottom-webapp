@@ -23,7 +23,7 @@ let PostStore = Reflux.createStore({
       context: this
     })
     .done(function(data) {
-      let info = JSON.stringify(data);
+      let info = JSON.stringify(data.payload);
       this.setState({ post: info });
     })
     .fail(function(err) {

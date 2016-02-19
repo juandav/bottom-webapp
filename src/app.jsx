@@ -19,9 +19,9 @@ injectTapEventPlugin();
 
 render((
  <Router history = { browserHistory } >
-   <Route path='/' component={ Dashboard }>
+   <Route path='/' component={ Account } />
+   <Route path='/dashboard' component={ Dashboard }>
      <IndexRoute component={ MenuContainer }/>
-     <Route path='login' component={ Account }/>
      <Route path="/menu" component={ MenuContainer } />
      <Route path="/page" component={ PageContainer } />
      <Route path="/blog" component={ BlogContainer } />
@@ -29,8 +29,3 @@ render((
    </Route>
  </Router>
 ), document.getElementById('app'))
-
-
-/*
-// <IndexRoute component={ Account }/>
-*/

@@ -7,6 +7,8 @@ import AuthActions from '../actions/AccountActions.jsx';
 import AuthStores from '../stores/AccountStore.jsx';
 import { Paper, TextField, RaisedButton } from 'material-ui';
 
+import "./container.css";
+
 const style = {
   height   : 250,
   width    : 300,
@@ -27,16 +29,21 @@ export default class Account extends Component {
       password: password.getValue().trim()
     };
 
-    AuthActions.login(creds, this.props.history);
+    let history = this.props.history;
 
+    let data = {
+      creds,
+      history
+    }
+
+    AuthActions.login(data);
     // let token = localStorage.getItem("token");
-
   }
 
   render() {
     return (
       <div className='centrado-porcentual'>
-        <Paper zDepth={4} rounded={false} className='login' style={style}>
+        <Paper zDepth={4} rounded={false} style={style}>
           <TextField
             hintText='Enter your username'
             floatingLabelText='Username'

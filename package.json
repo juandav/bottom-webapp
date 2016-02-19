@@ -2,9 +2,11 @@
   "name": "instakapp",
   "version": "0.0.1",
   "description": "InstakApp",
+  "main": "server.js",
   "scripts": {
     "build:dev": "NODE_ENV=development webpack-dev-server --devtool eval --progress --colors --hot --content-base build-dev --config webpack.config.dev.js",
-    "build:dist": "NODE_ENV=production webpack --config webpack.config.dist.js && jscrambler ./build-dist/bundle.js -a Instak -s Instak123 > ./build-dist/bundle.min.js"
+    "build:dist": "NODE_ENV=production webpack --config webpack.config.dist.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,7 @@ module.exports = {
   },
   entry: path.join(__dirname, '/src/app.jsx'),
   output: {
-    path: path.join(__dirname, "build-dist"),
+    path: path.join(__dirname, "public"),
     filename: 'bundle.js'
   },
   module: {
@@ -18,6 +18,10 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
       }
     ]
   }
