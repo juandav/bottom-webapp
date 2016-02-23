@@ -17,7 +17,8 @@ const style = {
   position: 'fixed',
   top     : 0,
   left    : 0,
-  right   : 0
+  right   : 0,
+  background: '#37474F'
 };
 
 export default class Dashboard extends Component {

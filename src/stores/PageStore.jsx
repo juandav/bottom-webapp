@@ -10,7 +10,7 @@ import PageActions from '../actions/PageActions.jsx';
 let PageStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : PageActions,
-  url            : 'http://localhost:7000/page',
+  url            : 'http://localhost:8080/page',
   getInitialState: function() {
     return {
       page: ''

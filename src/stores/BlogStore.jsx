@@ -10,7 +10,7 @@ import BlogActions from '../actions/BlogActions.jsx';
 let BlogStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : [ BlogActions ],
-  url            : 'http://localhost:7000/blog',
+  url            : 'localhost:7000/blog',
   getInitialState: function() {
     return {
       blog: ''

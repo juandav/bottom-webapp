@@ -15,17 +15,75 @@ import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
 import FlatButton from 'material-ui/lib/flat-button';
 
+import TinyMCE from 'react-tinymce';
+
+import ComboMenu from '../../components/ComboMenu.jsx';
+
 @connector(PageStore)
 export default class PageContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    }
+  }
 
   componentDidMount() {
     PageActions.fetchPage();
   }
 
+  handleOpen() {
+    this.setState({ open: true });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  handleCreate() {
+    const label = this.refs.label;
+    const body = this.refs.body;
+    PageActions.createPage({
+      label: label.getValue().trim(),
+      body : localStorage.getItem("page")
+    });
+    this.setState({ open: false });
+  }
+
+  _handleEditorChange(e) {
+    // console.log(e.target.getContent());}
+    localStorage.setItem("page", e.target.getContent());
+  }
+
   render() {
     if(this.state.page) {
+      const actions = [
+        <FlatButton label="Cancel" secondary={ true } onTouchTap={ this.handleClose.bind(this) }/>,
+        <FlatButton label="Create" primary={ true } onTouchTap={ this.handleCreate.bind(this) }/>
+      ];
       return (
         <div>
+          <RaisedButton label="Create Page" primary={true} onTouchTap={ this.handleOpen.bind(this) }/>
+          <Dialog
+            title='Create new page'
+            actions={actions}
+            modal={true}
+            open={this.state.open}>
+
+            <ComboMenu />
+            <TextField ref='label' hintText='write the label of the page' floatingLabelText='Label' />
+            <TinyMCE
+              width="200"
+              height="400"
+              content="<p>This is the initial content of the editor</p>"
+              config={{
+                plugins: 'autolink link image lists print preview',
+                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
+              }}
+              onChange={this._handleEditorChange.bind(this)}
+            />
+          </Dialog>
           <Table>
             <TableHeader>
               <TableRow>

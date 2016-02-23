@@ -17,6 +17,14 @@ import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
 import FlatButton from 'material-ui/lib/flat-button';
 
+import Paper from 'material-ui/lib/paper';
+
+const style = {
+margin: 20,
+display: 'inline-block'
+};
+
+
 @connector(MenuStore)
 export default class MenuContainer extends Component {
 
@@ -57,38 +65,40 @@ export default class MenuContainer extends Component {
       ];
       return (
         <div>
-          <RaisedButton label="Create Menu" primary={true} onTouchTap={ this.handleOpen.bind(this) }/>
-          <Dialog
-            title='Create new menu'
-            actions={actions}
-            modal={true}
-            open={this.state.open}>
+          <Paper style={style} zDepth={2}>
+            <RaisedButton label="Create Menu" primary={true} onTouchTap={ this.handleOpen.bind(this) }/>
+            <Dialog
+              title='Create new menu'
+              actions={actions}
+              modal={true}
+              open={this.state.open}>
 
-            <TextField ref='title' hintText='write the title of the menu' floatingLabelText='Title' />
-          </Dialog>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Title</TableHeaderColumn>
-                <TableHeaderColumn>Delete</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              { JSON.parse(this.state.info).map((row, index) => (
-                <TableRow key={index} selected={ false }>
-                  <TableRowColumn>{index}</TableRowColumn>
-                  <TableRowColumn>{row.title}</TableRowColumn>
-                  <TableRowColumn>
-                    <FloatingActionButton mini={true} onClick={ this._removeRow.bind(this, row) } >
-                      <ContentAdd />
-                    </FloatingActionButton>
-                  </TableRowColumn>
+              <TextField ref='title' hintText='write the title of the menu' floatingLabelText='Title' />
+            </Dialog>
+            <Table selectable={ false }>
+              <TableHeader>
+                <TableRow>
+                  <TableHeaderColumn>ID</TableHeaderColumn>
+                  <TableHeaderColumn>Title</TableHeaderColumn>
+                  <TableHeaderColumn>Delete</TableHeaderColumn>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+
+              <TableBody>
+                { JSON.parse(this.state.info).map((row, index) => (
+                  <TableRow key={index} selected={ false }>
+                    <TableRowColumn>{index}</TableRowColumn>
+                    <TableRowColumn>{row.title}</TableRowColumn>
+                    <TableRowColumn>
+                      <FloatingActionButton mini={true} onClick={ this._removeRow.bind(this, row) } >
+                        <ContentAdd />
+                      </FloatingActionButton>
+                    </TableRowColumn>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Paper>
         </div>
       )
     }
