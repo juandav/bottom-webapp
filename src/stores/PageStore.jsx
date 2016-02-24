@@ -30,9 +30,53 @@ let PageStore = Reflux.createStore({
       console.log('Error loading data: ' + err);
     });
   },
-  createPage     : function() {},
+  createPage     : function(data) {
+    console.log(data);
+    $.ajax({
+      type   : 'POST',
+      data   : data,
+      url    : 'http://localhost:7000/page',
+      context: this
+    })
+    .done(function(overData) {
+      this.fetchPage();
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  },
   putPage        : function() {},
-  removePage     : function() {}
+  removePage     : function(data) {
+    $.ajax({
+      url: 'http://localhost:7000/page/' + data._id,
+      type: 'DELETE',
+      context: this
+    })
+    .done(function(data) {
+      this.fetchPage();
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  }
 });
 
 export default PageStore;
+
+
+/*
+
+$.ajax({
+  type   : 'POST',
+  data   : data,
+  url    : 'http://localhost:7000/menu',
+  context: this
+})
+.done(function(result) {
+  this.fetchMenu();
+})
+.fail(function(err) {
+  console.log('Error loading data: ' + err);
+});
+
+*/

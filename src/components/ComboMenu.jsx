@@ -26,16 +26,54 @@ export default class ComboMenu extends React.Component {
   render() {
     if(this.state.info) {
       return (
-        <div>
-          <SelectField value={this.state.value} onChange={this.handleChange.bind(this)}>
+          <SelectField ref="SelectField" value={this.state.value} onChange={this.handleChange.bind(this)}>
             { JSON.parse(this.state.info).map((row, index) => (
-                <MenuItem value={ index } primaryText={ row.title }/>
+                <MenuItem value={ index } key={row._id} primaryText={ row.title }/>
             ))}
           </SelectField>
-        </div>
       );
     }
 
     return (<p> not content </p>);
   }
 }
+
+
+
+/*
+```javascript
+
+export default class ComboMenu extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {value: 0};
+  }
+
+  handleChange(event, index, value){
+    this.setState({value});
+  }
+
+  render() {
+    if(this.state.info) {
+      return (
+          <SelectField ref="SelectField" value={this.state.value} onChange={this.handleChange.bind(this)}>
+            { JSON.parse(this.state.info).map((row, index) => (
+                <MenuItem value={ index } primaryText={ row.title }/>
+            ))}
+          </SelectField>
+      );
+    }
+
+    return (<p> not content </p>);
+  }
+}
+
+export default class Test extends React.Component {
+  render() {
+      return (<ComboMenu ref="comboMenu" />);
+  }
+}
+
+```
+*/

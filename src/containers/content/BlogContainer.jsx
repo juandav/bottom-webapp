@@ -18,7 +18,6 @@ export default class BlogContainer extends Component {
   }
 
   render() {
-
     if(this.state.blog) {
       return (
         <div>

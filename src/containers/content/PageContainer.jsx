@@ -9,6 +9,8 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import ContentAdd from 'material-ui/lib/svg-icons/content/remove';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
@@ -44,16 +46,22 @@ export default class PageContainer extends Component {
   handleCreate() {
     const label = this.refs.label;
     const body = this.refs.body;
+    const menu_id = this.refs.ComboMenu.refs.__CONNECTED_COMPONENT_REF__.refs.SelectField;
+
     PageActions.createPage({
-      label: label.getValue().trim(),
-      body : localStorage.getItem("page")
+      menu_id: menu_id.props.children[menu_id.props.value].key,
+      label  : label.getValue().trim(),
+      body   : localStorage.getItem("page")
     });
     this.setState({ open: false });
   }
 
   _handleEditorChange(e) {
-    // console.log(e.target.getContent());}
     localStorage.setItem("page", e.target.getContent());
+  }
+
+  _removeRow(row) {
+    PageActions.removePage(row);
   }
 
   render() {
@@ -71,7 +79,7 @@ export default class PageContainer extends Component {
             modal={true}
             open={this.state.open}>
 
-            <ComboMenu />
+            <ComboMenu ref="ComboMenu" />
             <TextField ref='label' hintText='write the label of the page' floatingLabelText='Label' />
             <TinyMCE
               width="200"
@@ -91,6 +99,7 @@ export default class PageContainer extends Component {
                 <TableHeaderColumn>body</TableHeaderColumn>
                 <TableHeaderColumn>label</TableHeaderColumn>
                 <TableHeaderColumn>url</TableHeaderColumn>
+                <TableHeaderColumn>Delete</TableHeaderColumn>
               </TableRow>
             </TableHeader>
 
@@ -101,6 +110,11 @@ export default class PageContainer extends Component {
                   <TableRowColumn>{row.body}</TableRowColumn>
                   <TableRowColumn>{row.label}</TableRowColumn>
                   <TableRowColumn>{row.url}</TableRowColumn>
+                  <TableRowColumn>
+                    <FloatingActionButton mini={true} onClick={ this._removeRow.bind(this, row) } >
+                      <ContentAdd />
+                    </FloatingActionButton>
+                  </TableRowColumn>
                 </TableRow>
               ))}
             </TableBody>
