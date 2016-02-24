@@ -10,7 +10,7 @@ import BlogActions from '../actions/BlogActions.jsx';
 let BlogStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : [ BlogActions ],
-  url            : 'localhost:7000/blog',
+  url            : 'http://localhost:7000/blog',
   getInitialState: function() {
     return {
       blog: ''
@@ -30,9 +30,34 @@ let BlogStore = Reflux.createStore({
       console.log('Error loading data: ' + err);
     });
   },
-  createBlog     : function() {},
+  createBlog     : function(init_data) {
+    $.ajax({
+      type   : 'POST',
+      data   : init_data,
+      url    : 'http://localhost:7000/blog',
+      context: this
+    })
+    .done(function(over_data) {
+      this.fetchBlog();
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  },
   putBlog        : function() {},
-  removeBlog     : function() {}
+  removeBlog     : function(data) {
+    $.ajax({
+      url: 'http://localhost:7000/blog/' + data._id,
+      type: 'DELETE',
+      context: this
+    })
+    .done(function(data) {
+      this.fetchBlog();
+    })
+    .fail(function(err) {
+      console.log('Error loading data: ' + err);
+    });
+  }
 });
 
 export default BlogStore;
