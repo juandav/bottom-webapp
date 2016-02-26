@@ -11,6 +11,8 @@ import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 
+import BackupExport from '../components/BackupExport.jsx';
+
 import "./container.css";
 
 const style = {
@@ -36,6 +38,10 @@ export default class Dashboard extends Component {
      });
    }
 
+   handleExportData() {
+
+   }
+
   render() {
     return (
       <div id="dashboard">
@@ -50,7 +56,8 @@ export default class Dashboard extends Component {
               targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'top'}}
             >
-              <MenuItem primaryText="manage account" />
+              <MenuItem primaryText="manage account"/>
+              <BackupExport/>
               <MenuItem primaryText="logout" />
             </IconMenu>
           }

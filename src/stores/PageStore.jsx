@@ -31,7 +31,6 @@ let PageStore = Reflux.createStore({
     });
   },
   createPage     : function(data) {
-    console.log(data);
     $.ajax({
       type   : 'POST',
       data   : data,
