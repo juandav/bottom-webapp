@@ -23,7 +23,7 @@ let BackupStore = Reflux.createStore({
       context: this
     })
     .done(function(data) {
-      let info = JSON.stringify(data.payload);
+      let info = JSON.stringify(data);
       this.setState({ backup: info });
     })
     .fail(function(err) {

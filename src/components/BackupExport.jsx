@@ -6,7 +6,7 @@ import BackupActions from '../actions/BackupActions.jsx';
 
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-import * as download   from '../lib/download.js';
+// import download   from '../lib/download.jsx';
 
 const style = {
   margin: 12,
@@ -25,8 +25,15 @@ export default class BackupExport extends React.Component {
   }
 
   handleClick() {
-    console.log(download);
-    // download(this.state.backup, "backup.txt", "text/plain");
+
+    let file = new Blob([this.state.backup], {type: "application/json"});
+    let url = URL.createObjectURL(file);
+    let a = document.createElement("a");
+
+		a.href = url;
+		a.download = "backup.json";
+    a.click();
+
   }
 
   render() {
