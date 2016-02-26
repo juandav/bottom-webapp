@@ -16,7 +16,8 @@ let AccountStore = Reflux.createStore({
     $.ajax({
       type: 'POST',
       url : this.url,
-      data: info.creds
+      data: info.creds,
+      context: this
     })
     .done(function(data) {
       localStorage.setItem("token", data.payload.token);
@@ -29,9 +30,9 @@ let AccountStore = Reflux.createStore({
       localStorage.setItem("token", "");
     });
   },
-  logout         : function(){
+  logout         : function(info){
     localStorage.setItem("token", "");
-    info.history.push('login');
+    info.history.push('/');
   }
 });
 

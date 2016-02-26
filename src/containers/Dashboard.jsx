@@ -3,15 +3,17 @@
 * Module dependencies
 */
 import React, { Component } from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import Menu from '../components/menu/menu.jsx';
 
-import IconButton from 'material-ui/lib/icon-button';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import AppBar       from 'material-ui/lib/app-bar';
+import Menu         from '../components/menu/menu.jsx';
+import IconButton   from 'material-ui/lib/icon-button';
+import IconMenu     from 'material-ui/lib/menus/icon-menu';
+import MenuItem     from 'material-ui/lib/menus/menu-item';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 import BackupExport from '../components/BackupExport.jsx';
+
+import AccountActions from '../actions/AccountActions.jsx';
 
 import "./container.css";
 
@@ -38,8 +40,9 @@ export default class Dashboard extends Component {
      });
    }
 
-   handleExportData() {
-
+   logout() {
+     let history = this.props.history;
+     AccountActions.logout(history);
    }
 
   render() {
@@ -58,7 +61,7 @@ export default class Dashboard extends Component {
             >
               <MenuItem primaryText="manage account"/>
               <BackupExport/>
-              <MenuItem primaryText="logout" />
+              <MenuItem primaryText="logout" onTouchTap={this.logout.bind(this)} />
             </IconMenu>
           }
           onLeftIconButtonTouchTap={ this._changeState.bind(this) }>
