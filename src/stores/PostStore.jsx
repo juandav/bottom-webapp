@@ -39,7 +39,7 @@ let PostStore = Reflux.createStore({
         "Content-Type" : 'application/x-www-form-urlencoded',
         "Authorization": localStorage.getItem("token")
       },
-      url    : 'http://localhost:7000/post',
+      url    : this.url,
       context: this
     })
     .done(function(over_data) {
@@ -52,7 +52,7 @@ let PostStore = Reflux.createStore({
   putPost        : function() {},
   removePost     : function(data) {
     $.ajax({
-      url: 'http://localhost:7000/post/' + data._id,
+      url: this.url + '/' + data._id,
       type: 'DELETE',
       context: this
     })

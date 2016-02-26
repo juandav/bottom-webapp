@@ -10,7 +10,7 @@ import PageActions from '../actions/PageActions.jsx';
 let PageStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : PageActions,
-  url            : 'http://localhost:8080/page',
+  url            : 'http://localhost:7000/page',
   getInitialState: function() {
     return {
       page: ''
@@ -19,7 +19,7 @@ let PageStore = Reflux.createStore({
   fetchPage      : function() {
     $.ajax({
       type   : 'GET',
-      url    : 'http://localhost:7000/page',
+      url    : this.url,
       context: this
     })
     .done(function(data) {
@@ -34,7 +34,7 @@ let PageStore = Reflux.createStore({
     $.ajax({
       type   : 'POST',
       data   : data,
-      url    : 'http://localhost:7000/page',
+      url    : this.url,
       context: this
     })
     .done(function(overData) {
@@ -47,7 +47,7 @@ let PageStore = Reflux.createStore({
   putPage        : function() {},
   removePage     : function(data) {
     $.ajax({
-      url: 'http://localhost:7000/page/' + data._id,
+      url: this.url + '/' + data._id,
       type: 'DELETE',
       context: this
     })

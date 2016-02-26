@@ -15,7 +15,7 @@ let AccountStore = Reflux.createStore({
   login          : function(info) {
     $.ajax({
       type: 'POST',
-      url : 'http://localhost:7000/login',
+      url : this.url,
       data: info.creds
     })
     .done(function(data) {

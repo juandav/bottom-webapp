@@ -9,6 +9,7 @@ import MenuActions from '../actions/MenuActions.jsx';
 let MenuStore = Reflux.createStore({
   mixins         : [ StateMixin.store ],
   listenables    : MenuActions,
+  url            : 'http://localhost:7000/menu',
   getInitialState: function() {
     return{
       info: ''
@@ -17,7 +18,7 @@ let MenuStore = Reflux.createStore({
   fetchMenu      : function() {
     $.ajax({
       type   : 'GET',
-      url    : 'http://localhost:7000/menu',
+      url    : this.url,
       context: this
     })
     .done(function(data) {
@@ -32,7 +33,7 @@ let MenuStore = Reflux.createStore({
     $.ajax({
       type   : 'POST',
       data   : info,
-      url    : 'http://localhost:7000/menu',
+      url    : this.url,
       context: this
     })
     .done(function(data) {
@@ -45,7 +46,7 @@ let MenuStore = Reflux.createStore({
   putMenu        : function() {},
   removeMenu     : function(data) {
     $.ajax({
-      url: 'http://localhost:7000/menu/' + data._id,
+      url: this.url + '/' + data._id,
       type: 'DELETE',
       context: this
     })

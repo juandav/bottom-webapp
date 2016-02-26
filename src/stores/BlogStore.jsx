@@ -34,7 +34,7 @@ let BlogStore = Reflux.createStore({
     $.ajax({
       type   : 'POST',
       data   : init_data,
-      url    : 'http://localhost:7000/blog',
+      url    : this.url,
       context: this
     })
     .done(function(over_data) {
@@ -47,7 +47,7 @@ let BlogStore = Reflux.createStore({
   putBlog        : function() {},
   removeBlog     : function(data) {
     $.ajax({
-      url: 'http://localhost:7000/blog/' + data._id,
+      url: this.url + '/' + data._id,
       type: 'DELETE',
       context: this
     })
