@@ -1,7 +1,7 @@
 {
-  "name": "instakapp",
+  "name": "bottom-webapp",
   "version": "0.0.1",
-  "description": "InstakApp",
+  "description": "bottom",
   "main": "server.js",
   "scripts": {
     "build:dev": "NODE_ENV=development webpack-dev-server --devtool eval --progress --colors --hot --content-base build-dev --config webpack.config.dev.js",
