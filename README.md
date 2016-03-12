@@ -9,3 +9,6 @@
 ## mode prod
 1. npm run build:dist
 2. npm run start
+
+## link api
+https://github.com/juandav/bottom-api
