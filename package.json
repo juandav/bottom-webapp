@@ -30,7 +30,7 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "react-tap-event-plugin": "^0.2.2",
-    "react-tinymce": "^0.4.0",
+    "react-tinymce": "^0.7.0",
     "reflux": "^0.3.0",
     "reflux-state-mixin": "^0.6.3"
   },
