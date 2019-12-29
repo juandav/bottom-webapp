@@ -32,7 +32,7 @@
     "react-tap-event-plugin": "^0.2.2",
     "react-tinymce": "^0.4.0",
     "reflux": "^0.3.0",
-    "reflux-state-mixin": "^0.6.3"
+    "reflux-state-mixin": "^0.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
