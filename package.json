@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/juandav/InstakApp#readme",
   "dependencies": {
-    "history": "^2.0.0",
+    "history": "^4.0.0",
     "jquery": "^3.0.0",
     "material-ui": "^0.20.0",
     "react": "^0.14.7",
