@@ -47,7 +47,7 @@
     "jscrambler": "0.7.5",
     "jscrambler-loader": "1.0.1",
     "style-loader": "0.13.2",
-    "webpack": "1.15.0",
+    "webpack": "5.91.0",
     "webpack-dev-server": "1.16.5",
     "webpack-livereload-plugin": "0.5.3"
   }
